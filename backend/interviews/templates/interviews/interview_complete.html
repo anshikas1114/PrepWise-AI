@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interview Complete - PrepWise AI</title>
+</head>
+
+<body>
+
+    <h1>Interview Completed!</h1>
+
+    <p>Great job, {{ user.username }}.</p>
+
+    <hr>
+
+    <h2>Interview Summary</h2>
+
+    <p>
+        <strong>Target Role:</strong>
+        {{ interview.target_role }}
+    </p>
+
+    <p>
+        <strong>Interview Type:</strong>
+        {{ interview.get_interview_type_display }}
+    </p>
+
+    <p>
+        <strong>Difficulty:</strong>
+        {{ interview.get_difficulty_display }}
+    </p>
+
+    <p>
+        <strong>Score:</strong>
+        {{ interview.score }}
+    </p>
+
+    <br>
+
+    <a href="{% url 'dashboard' %}">
+        Back to Dashboard
+    </a>
+
+</body>
+</html>

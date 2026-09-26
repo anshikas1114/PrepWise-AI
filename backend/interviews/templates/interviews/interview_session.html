@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interview - PrepWise AI</title>
+</head>
+
+<body>
+
+    <h1>PrepWise AI Interview</h1>
+
+    <p>
+        <strong>Role:</strong>
+        {{ interview.target_role }}
+    </p>
+
+    <p>
+        <strong>Type:</strong>
+        {{ interview.get_interview_type_display }}
+    </p>
+
+    <p>
+        <strong>Difficulty:</strong>
+        {{ interview.get_difficulty_display }}
+    </p>
+
+    <hr>
+
+    <p>
+        Question {{ question_number }} of {{ total_questions }}
+    </p>
+
+    <h2>{{ question.question_text }}</h2>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label for="answer">
+            Your Answer
+        </label>
+
+        <br><br>
+
+        <textarea
+            id="answer"
+            name="answer"
+            rows="8"
+            cols="70"
+            placeholder="Type your answer here..."
+            required
+        ></textarea>
+
+        <br><br>
+
+        <button type="submit">
+            Submit Answer
+        </button>
+
+    </form>
+
+</body>
+</html>

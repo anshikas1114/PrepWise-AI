@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - PrepWise AI</title>
+</head>
+
+<body>
+
+    <h1>PrepWise AI Dashboard</h1>
+
+    <h2>Welcome, {{ user.username }}!</h2>
+
+    <p>This is your personal interview preparation dashboard.</p>
+
+    <hr>
+
+    <h3>My Profile</h3>
+    <p>Manage your personal information and interview preferences.</p>
+    <a href="{% url 'profile' %}">View Profile</a>
+
+    <br><br>
+
+    <h3>Interview Preparation</h3>
+    <p>Prepare for technical, HR, and behavioral interviews.</p>
+
+    <a href="{% url 'start_interview' %}">
+    <button type="button">Start Interview</button>
+    </a>
+    <br><br>
+
+    <h3>My Performance</h3>
+    <p>Your interview performance and scores will appear here.</p>
+
+    <button>View Performance</button>
+
+    <br><br>
+
+    <h3>Recommendations</h3>
+    <p>Personalized preparation recommendations will appear here.</p>
+
+    <button>View Recommendations</button>
+
+    <hr>
+
+    <form action="{% url 'logout' %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+    </form>
+
+</body>
+</html>
