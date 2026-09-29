@@ -1,87 +1,346 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile - PrepWise AI</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | PrepWise AI</title>
+
+    <link rel="stylesheet"
+          href="{% static 'accounts/style.css' %}">
+
 </head>
 
 <body>
 
-    <h1>My PrepWise AI Profile</h1>
+<!-- ================= NAVBAR ================= -->
 
-    <form method="POST">
-        {% csrf_token %}
+<nav class="navbar">
 
-        <label>Full Name</label>
-        <input
-            type="text"
-            name="full_name"
-            value="{{ profile.full_name }}"
-            required
-        >
+    <a href="{% url 'dashboard' %}" class="brand">
+        <span class="brand-prep">Prep</span><span class="brand-wise">Wise</span>
+        <span class="brand-ai">AI</span>
+    </a>
 
-        <br><br>
+    <div class="nav-links">
 
-        <label>Education</label>
-        <input
-            type="text"
-            name="education"
-            value="{{ profile.education }}"
-        >
+        <a href="{% url 'dashboard' %}">
+            Dashboard
+        </a>
 
-        <br><br>
+        <a href="{% url 'profile' %}" class="active-nav">
+            Profile
+        </a>
 
-        <label>Skills</label>
-        <textarea name="skills">{{ profile.skills }}</textarea>
+        <form action="{% url 'logout' %}" method="POST" class="nav-logout-form">
+            {% csrf_token %}
+            <button type="submit" class="nav-logout">
+                Logout
+            </button>
+        </form>
 
-        <br><br>
+    </div>
 
-        <label>Experience Level</label>
+</nav>
 
-        <select name="experience_level">
 
-            <option value="fresher"
-                {% if profile.experience_level == 'fresher' %}selected{% endif %}>
-                Fresher
-            </option>
+<!-- ================= PROFILE PAGE ================= -->
 
-            <option value="beginner"
-                {% if profile.experience_level == 'beginner' %}selected{% endif %}>
-                Beginner
-            </option>
+<main class="profile-page">
 
-            <option value="intermediate"
-                {% if profile.experience_level == 'intermediate' %}selected{% endif %}>
-                Intermediate
-            </option>
+    <section class="profile-header">
 
-            <option value="experienced"
-                {% if profile.experience_level == 'experienced' %}selected{% endif %}>
-                Experienced
-            </option>
+        <div>
 
-        </select>
+            <p class="profile-label">
+                YOUR PROFILE
+            </p>
 
-        <br><br>
+            <h1>
+                Build Your Interview Profile
+            </h1>
 
-        <label>Target Role</label>
-        <input
-            type="text"
-            name="target_role"
-            value="{{ profile.target_role }}"
-        >
+            <p>
+                Keep your information updated so PrepWise AI can
+                provide more relevant interview preparation.
+            </p>
 
-        <br><br>
+        </div>
 
-        <label>Bio</label>
-        <textarea name="bio">{{ profile.bio }}</textarea>
+        <div class="profile-avatar">
+            {{ user.username|first|upper }}
+        </div>
 
-        <br><br>
+    </section>
 
-        <button type="submit">Save Profile</button>
 
-    </form>
+    <!-- ================= PROFILE FORM ================= -->
+
+    <section class="profile-card">
+
+        <div class="profile-card-header">
+
+            <div>
+
+                <h2>
+                    Personal Information
+                </h2>
+
+                <p>
+                    Tell us about yourself and your career goals.
+                </p>
+
+            </div>
+
+            <span class="profile-status">
+                Profile
+            </span>
+
+        </div>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <div class="profile-form-grid">
+
+
+                <!-- Full Name -->
+
+                <div class="profile-form-group full-width">
+
+                    <label for="full_name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="full_name"
+                        name="full_name"
+                        value="{{ profile.full_name }}"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Education -->
+
+                <div class="profile-form-group">
+
+                    <label for="education">
+                        Education
+                    </label>
+
+                    <input
+                        type="text"
+                        id="education"
+                        name="education"
+                        value="{{ profile.education }}"
+                        placeholder="e.g. B.Tech Computer Science"
+                    >
+
+                </div>
+
+
+                <!-- Target Role -->
+
+                <div class="profile-form-group">
+
+                    <label for="target_role">
+                        Target Role
+                    </label>
+
+                    <input
+                        type="text"
+                        id="target_role"
+                        name="target_role"
+                        value="{{ profile.target_role }}"
+                        placeholder="e.g. Software Developer"
+                    >
+
+                </div>
+
+
+                <!-- Skills -->
+
+                <div class="profile-form-group full-width">
+
+                    <label for="skills">
+                        Skills
+                    </label>
+
+                    <textarea
+                        id="skills"
+                        name="skills"
+                        rows="4"
+                        placeholder="e.g. Python, Django, HTML, CSS, SQL"
+                    >{{ profile.skills }}</textarea>
+
+                    <small>
+                        Add the technical and professional skills you want to practice.
+                    </small>
+
+                </div>
+
+
+                <!-- Experience -->
+
+                <div class="profile-form-group">
+
+                    <label for="experience_level">
+                        Experience Level
+                    </label>
+
+                    <select
+                        id="experience_level"
+                        name="experience_level"
+                    >
+
+                        <option value="fresher"
+                            {% if profile.experience_level == 'fresher' %}selected{% endif %}>
+                            Fresher
+                        </option>
+
+                        <option value="beginner"
+                            {% if profile.experience_level == 'beginner' %}selected{% endif %}>
+                            Beginner
+                        </option>
+
+                        <option value="intermediate"
+                            {% if profile.experience_level == 'intermediate' %}selected{% endif %}>
+                            Intermediate
+                        </option>
+
+                        <option value="experienced"
+                            {% if profile.experience_level == 'experienced' %}selected{% endif %}>
+                            Experienced
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Username -->
+
+                <div class="profile-form-group">
+
+                    <label>
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        value="{{ user.username }}"
+                        disabled
+                    >
+
+                    <small>
+                        Your username cannot be changed here.
+                    </small>
+
+                </div>
+
+
+                <!-- Bio -->
+
+                <div class="profile-form-group full-width">
+
+                    <label for="bio">
+                        About You
+                    </label>
+
+                    <textarea
+                        id="bio"
+                        name="bio"
+                        rows="5"
+                        placeholder="Write a short introduction about yourself..."
+                    >{{ profile.bio }}</textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- Save -->
+
+            <div class="profile-form-footer">
+
+                <p>
+                    Your profile information will be used to personalize
+                    your interview preparation.
+                </p>
+
+                <button type="submit"
+                        class="profile-save-btn">
+
+                    Save Profile
+                    <span>→</span>
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- ================= PROFILE TIP ================= -->
+
+    <section class="profile-tip">
+
+        <div class="profile-tip-icon">
+            ✦
+        </div>
+
+        <div>
+
+            <h3>
+                Why complete your profile?
+            </h3>
+
+            <p>
+                Your role, skills and experience level help PrepWise AI
+                prepare interview questions that are more relevant to
+                your career goals.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-brand">
+        PrepWise <span>AI</span>
+    </div>
+
+    <p>
+        Smart Interview Preparation & Career Readiness Platform
+    </p>
+
+    <small>
+        © 2026 PrepWise AI. All rights reserved.
+    </small>
+
+</footer>
+
 
 </body>
 </html>

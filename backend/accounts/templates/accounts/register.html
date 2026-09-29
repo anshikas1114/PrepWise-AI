@@ -1,46 +1,190 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - PrepWise AI</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | PrepWise AI</title>
+
+    <link rel="stylesheet"
+          href="{% static 'accounts/style.css' %}">
+
 </head>
 
 <body>
 
-    <h1>Create your PrepWise AI account</h1>
+<!-- ================= NAVBAR ================= -->
 
-    {% if messages %}
-        {% for message in messages %}
-            <p>{{ message }}</p>
-        {% endfor %}
-    {% endif %}
+<nav class="navbar">
 
-    <form method="POST">
-        {% csrf_token %}
+    <a href="{% url 'home' %}" class="brand">
+        <span class="brand-prep">Prep</span><span class="brand-wise">Wise</span>
+        <span class="brand-ai">AI</span>
+    </a>
 
-        <label>Username</label>
-        <input type="text" name="username" required>
+    <div class="nav-links">
 
-        <br><br>
+        <a href="{% url 'home' %}">
+            Home
+        </a>
 
-        <label>Email</label>
-        <input type="email" name="email" required>
+        <a href="{% url 'login' %}" class="nav-login">
+            Login
+        </a>
 
-        <br><br>
+    </div>
 
-        <label>Password</label>
-        <input type="password" name="password" required>
+</nav>
 
-        <br><br>
 
-        <label>Confirm Password</label>
-        <input type="password" name="confirm_password" required>
+<!-- ================= REGISTER ================= -->
 
-        <br><br>
+<section class="auth-page">
 
-        <button type="submit">Create Account</button>
-    </form>
+    <div class="auth-card">
+
+        <div class="auth-logo">
+
+            <span class="blue">Prep</span><span class="teal">Wise</span>
+            <span class="brand-ai">AI</span>
+
+        </div>
+
+
+        <h1 class="auth-title">
+            Create Your Account
+        </h1>
+
+
+        <p class="auth-subtitle">
+            Start preparing smarter for your next interview.
+        </p>
+
+
+        <!-- Django Messages -->
+
+        {% if messages %}
+
+            <div class="auth-messages">
+
+                {% for message in messages %}
+
+                    <div class="auth-message">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+
+        <!-- Registration Form -->
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <div class="auth-form-group">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Choose a username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="auth-form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="auth-form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Create a password"
+                    required
+                >
+
+            </div>
+
+
+            <div class="auth-form-group">
+
+                <label for="confirm_password">
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirm_password"
+                    name="confirm_password"
+                    placeholder="Confirm your password"
+                    required
+                >
+
+            </div>
+
+
+            <button type="submit"
+                    class="auth-submit">
+
+                Create Account
+
+            </button>
+
+        </form>
+
+
+        <div class="auth-footer">
+
+            Already have an account?
+
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
 
 </body>
+
 </html>

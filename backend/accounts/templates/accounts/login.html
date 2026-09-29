@@ -1,41 +1,156 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - PrepWise AI</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login | PrepWise AI</title>
+
+    <link rel="stylesheet"
+          href="{% static 'accounts/style.css' %}">
+
 </head>
 
 <body>
 
-    <h1>Login to PrepWise AI</h1>
+<!-- ================= NAVBAR ================= -->
 
-    {% if messages %}
-        {% for message in messages %}
-            <p>{{ message }}</p>
-        {% endfor %}
-    {% endif %}
+<nav class="navbar">
 
-    <form method="POST">
-        {% csrf_token %}
+    <a href="{% url 'home' %}" class="brand">
+        <span class="brand-prep">Prep</span><span class="brand-wise">Wise</span>
+        <span class="brand-ai">AI</span>
+    </a>
 
-        <label>Username</label>
-        <input type="text" name="username" required>
+    <div class="nav-links">
 
-        <br><br>
+        <a href="{% url 'home' %}">
+            Home
+        </a>
 
-        <label>Password</label>
-        <input type="password" name="password" required>
+        <a href="{% url 'register' %}" class="nav-register">
+            Create Account
+        </a>
 
-        <br><br>
+    </div>
 
-        <button type="submit">Login</button>
-    </form>
+</nav>
 
-    <p>
-        Don't have an account?
-        <a href="{% url 'register' %}">Create an account</a>
-    </p>
+
+<!-- ================= LOGIN ================= -->
+
+<section class="auth-page">
+
+    <div class="auth-card">
+
+        <div class="auth-logo">
+
+            <span class="blue">Prep</span><span class="teal">Wise</span>
+            <span class="brand-ai">AI</span>
+
+        </div>
+
+
+        <h1 class="auth-title">
+            Welcome Back
+        </h1>
+
+
+        <p class="auth-subtitle">
+            Continue your interview preparation journey.
+        </p>
+
+
+        <!-- Django Messages -->
+
+        {% if messages %}
+
+            <div class="auth-messages">
+
+                {% for message in messages %}
+
+                    <div class="auth-message">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+
+        <!-- Login Form -->
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <div class="auth-form-group">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter your username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="auth-form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+            </div>
+
+
+            <button type="submit"
+                    class="auth-submit">
+
+                Login to PrepWise AI
+
+            </button>
+
+        </form>
+
+
+        <div class="auth-footer">
+
+            Don't have an account?
+
+            <a href="{% url 'register' %}">
+                Create an account
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
 
 </body>
+
 </html>

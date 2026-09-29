@@ -1,65 +1,303 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Interview - PrepWise AI</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Interview Session | PrepWise AI</title>
+
+    <link rel="stylesheet"
+          href="{% static 'accounts/style.css' %}">
+
 </head>
 
 <body>
 
-    <h1>PrepWise AI Interview</h1>
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <a href="{% url 'dashboard' %}" class="brand">
+        <span class="brand-prep">Prep</span><span class="brand-wise">Wise</span>
+        <span class="brand-ai">AI</span>
+    </a>
+
+    <div class="nav-links">
+
+        <a href="{% url 'dashboard' %}">
+            Dashboard
+        </a>
+
+        <a href="{% url 'profile' %}">
+            Profile
+        </a>
+
+        <form action="{% url 'logout' %}"
+              method="POST"
+              class="nav-logout-form">
+
+            {% csrf_token %}
+
+            <button type="submit" class="nav-logout">
+                Logout
+            </button>
+
+        </form>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= INTERVIEW PAGE ================= -->
+
+<main class="interview-session-page">
+
+
+    <!-- Interview Header -->
+
+    <section class="session-header">
+
+        <div>
+
+            <p class="interview-label">
+                LIVE INTERVIEW SESSION
+            </p>
+
+            <h1>
+                PrepWise AI Interview
+            </h1>
+
+            <p>
+                Take your time, think carefully and provide
+                your best answer.
+            </p>
+
+        </div>
+
+        <div class="session-badge">
+            AI Practice
+        </div>
+
+    </section>
+
+
+    <!-- Interview Information -->
+
+    <section class="session-info-card">
+
+        <div class="session-info-item">
+
+            <span class="session-info-label">
+                TARGET ROLE
+            </span>
+
+            <strong>
+                {{ interview.target_role }}
+            </strong>
+
+        </div>
+
+
+        <div class="session-info-divider"></div>
+
+
+        <div class="session-info-item">
+
+            <span class="session-info-label">
+                INTERVIEW TYPE
+            </span>
+
+            <strong>
+                {{ interview.get_interview_type_display }}
+            </strong>
+
+        </div>
+
+
+        <div class="session-info-divider"></div>
+
+
+        <div class="session-info-item">
+
+            <span class="session-info-label">
+                DIFFICULTY
+            </span>
+
+            <strong>
+                {{ interview.get_difficulty_display }}
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- Progress -->
+
+    <section class="question-progress">
+
+        <div class="progress-top">
+
+            <span>
+                Question {{ question_number }} of {{ total_questions }}
+            </span>
+
+            <span>
+                {{ question_number }}/{{ total_questions }}
+            </span>
+
+        </div>
+
+        <div class="progress-bar">
+
+            <div
+                class="progress-fill"
+                style="width: {% widthratio question_number total_questions 100 %}%;">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Question Card -->
+
+    <section class="question-card">
+
+        <div class="question-card-header">
+
+            <span class="question-number">
+                QUESTION {{ question_number }}
+            </span>
+
+            <span class="question-type">
+                {{ interview.get_interview_type_display }}
+            </span>
+
+        </div>
+
+
+        <div class="question-content">
+
+            <h2>
+                {{ question.question_text }}
+            </h2>
+
+        </div>
+
+
+        <!-- Answer -->
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="answer-section">
+
+                <label for="answer">
+                    Your Answer
+                </label>
+
+                <p>
+                    Explain your answer clearly and include
+                    examples where appropriate.
+                </p>
+
+                <textarea
+                    id="answer"
+                    name="answer"
+                    rows="10"
+                    placeholder="Type your answer here..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- Submit -->
+
+            <div class="answer-footer">
+
+                <div class="answer-tip">
+
+                    <span>✦</span>
+
+                    <p>
+                        Think through your answer before submitting.
+                    </p>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="submit-answer-btn"
+                >
+
+                    Submit Answer
+                    <span>→</span>
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- Session Notice -->
+
+    <section class="session-notice">
+
+        <div class="session-notice-icon">
+            ⓘ
+        </div>
+
+        <div>
+
+            <h3>
+                Keep going!
+            </h3>
+
+            <p>
+                Your responses are saved as you progress through
+                the interview. At the end of the session, you'll
+                receive your overall performance result.
+            </p>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-brand">
+        PrepWise <span>AI</span>
+    </div>
 
     <p>
-        <strong>Role:</strong>
-        {{ interview.target_role }}
+        Smart Interview Preparation & Career Readiness Platform
     </p>
 
-    <p>
-        <strong>Type:</strong>
-        {{ interview.get_interview_type_display }}
-    </p>
+    <small>
+        © 2026 PrepWise AI. All rights reserved.
+    </small>
 
-    <p>
-        <strong>Difficulty:</strong>
-        {{ interview.get_difficulty_display }}
-    </p>
+</footer>
 
-    <hr>
-
-    <p>
-        Question {{ question_number }} of {{ total_questions }}
-    </p>
-
-    <h2>{{ question.question_text }}</h2>
-
-    <form method="POST">
-
-        {% csrf_token %}
-
-        <label for="answer">
-            Your Answer
-        </label>
-
-        <br><br>
-
-        <textarea
-            id="answer"
-            name="answer"
-            rows="8"
-            cols="70"
-            placeholder="Type your answer here..."
-            required
-        ></textarea>
-
-        <br><br>
-
-        <button type="submit">
-            Submit Answer
-        </button>
-
-    </form>
 
 </body>
 </html>

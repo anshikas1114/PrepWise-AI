@@ -1,53 +1,335 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - PrepWise AI</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | PrepWise AI</title>
+
+    <link rel="stylesheet"
+          href="{% static 'accounts/style.css' %}">
+
 </head>
 
 <body>
 
-    <h1>PrepWise AI Dashboard</h1>
+<!-- ================= NAVBAR ================= -->
 
-    <h2>Welcome, {{ user.username }}!</h2>
+<nav class="navbar">
 
-    <p>This is your personal interview preparation dashboard.</p>
-
-    <hr>
-
-    <h3>My Profile</h3>
-    <p>Manage your personal information and interview preferences.</p>
-    <a href="{% url 'profile' %}">View Profile</a>
-
-    <br><br>
-
-    <h3>Interview Preparation</h3>
-    <p>Prepare for technical, HR, and behavioral interviews.</p>
-
-    <a href="{% url 'start_interview' %}">
-    <button type="button">Start Interview</button>
+    <a href="{% url 'dashboard' %}" class="brand">
+        <span class="brand-prep">Prep</span><span class="brand-wise">Wise</span>
+        <span class="brand-ai">AI</span>
     </a>
-    <br><br>
 
-    <h3>My Performance</h3>
-    <p>Your interview performance and scores will appear here.</p>
 
-    <button>View Performance</button>
+    <div class="nav-links">
 
-    <br><br>
+        <a href="{% url 'dashboard' %}">
+            Dashboard
+        </a>
 
-    <h3>Recommendations</h3>
-    <p>Personalized preparation recommendations will appear here.</p>
+        <a href="{% url 'profile' %}">
+            Profile
+        </a>
 
-    <button>View Recommendations</button>
+        <a href="{% url 'logout' %}" class="nav-login">
+            Logout
+        </a>
 
-    <hr>
+    </div>
 
-    <form action="{% url 'logout' %}" method="POST">
-    {% csrf_token %}
-    <button type="submit">Logout</button>
-    </form>
+</nav>
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<main class="dashboard-page">
+
+
+    <!-- Welcome Section -->
+
+    <section class="dashboard-welcome">
+
+        <div>
+
+            <p class="dashboard-label">
+                YOUR PREPARATION SPACE
+            </p>
+
+            <h1>
+                Welcome back, {{ user.username }}!
+            </h1>
+
+            <p class="dashboard-description">
+                Practice interviews, improve your answers and
+                track your progress with PrepWise AI.
+            </p>
+
+        </div>
+
+
+        <a href="{% url 'start_interview' %}"
+           class="dashboard-primary-btn">
+
+            Start an Interview
+            <span>→</span>
+
+        </a>
+
+    </section>
+
+
+    <!-- Quick Stats -->
+
+    <section class="dashboard-stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon blue-stat">
+                🎯
+            </div>
+
+            <div>
+
+                <span class="stat-title">
+                    Interviews
+                </span>
+
+                <strong>
+                    0
+                </strong>
+
+                <small>
+                    Completed
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon teal-stat">
+                📊
+            </div>
+
+            <div>
+
+                <span class="stat-title">
+                    Average Score
+                </span>
+
+                <strong>
+                    0%
+                </strong>
+
+                <small>
+                    Overall performance
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon navy-stat">
+                📈
+            </div>
+
+            <div>
+
+                <span class="stat-title">
+                    Practice
+                </span>
+
+                <strong>
+                    0
+                </strong>
+
+                <small>
+                    Questions answered
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Main Dashboard Cards -->
+
+    <section class="dashboard-grid">
+
+
+        <!-- Profile -->
+
+        <div class="dashboard-card">
+
+            <div class="dashboard-card-icon blue-icon">
+                👤
+            </div>
+
+            <h2>
+                My Profile
+            </h2>
+
+            <p>
+                Manage your personal information,
+                skills and interview preferences.
+            </p>
+
+            <a href="{% url 'profile' %}"
+               class="dashboard-card-link">
+
+                View Profile →
+
+            </a>
+
+        </div>
+
+
+        <!-- Interview -->
+
+        <div class="dashboard-card featured-dashboard-card">
+
+            <div class="dashboard-card-icon teal-icon">
+                ✦
+            </div>
+
+            <h2>
+                Interview Preparation
+            </h2>
+
+            <p>
+                Practice technical, HR and behavioral
+                interviews based on your target role.
+            </p>
+
+            <a href="{% url 'start_interview' %}"
+               class="dashboard-card-link">
+
+                Start Interview →
+
+            </a>
+
+        </div>
+
+
+        <!-- Performance -->
+
+        <div class="dashboard-card">
+
+            <div class="dashboard-card-icon navy-icon">
+                📈
+            </div>
+
+            <h2>
+                My Performance
+            </h2>
+
+            <p>
+                Review your interview scores and identify
+                areas where you can improve.
+            </p>
+
+            <button type="button"
+                    class="dashboard-disabled-btn">
+
+                Coming Soon
+
+            </button>
+
+        </div>
+
+
+        <!-- Recommendations -->
+
+        <div class="dashboard-card">
+
+            <div class="dashboard-card-icon blue-icon">
+                💡
+            </div>
+
+            <h2>
+                Recommendations
+            </h2>
+
+            <p>
+                Get personalized preparation recommendations
+                based on your performance.
+            </p>
+
+            <button type="button"
+                    class="dashboard-disabled-btn">
+
+                Coming Soon
+
+            </button>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- Preparation Tip -->
+
+    <section class="dashboard-tip">
+
+        <div class="tip-icon">
+            ✦
+        </div>
+
+        <div>
+
+            <h3>
+                Preparation Tip
+            </h3>
+
+            <p>
+                Practice explaining your answers clearly.
+                Good communication is just as important as
+                technical knowledge during an interview.
+            </p>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-brand">
+        PrepWise <span>AI</span>
+    </div>
+
+    <p>
+        Smart Interview Preparation & Career Readiness Platform
+    </p>
+
+    <small>
+        © 2026 PrepWise AI. All rights reserved.
+    </small>
+
+</footer>
+
 
 </body>
+
 </html>
