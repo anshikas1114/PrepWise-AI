@@ -1,31 +1,32 @@
 # PrepWise AI
 
-> An AI-powered interview preparation platform designed to help students and job seekers prepare for technical, HR, and behavioral interviews.
+### AI-Powered Interview Preparation & Career Readiness Platform
 
-## 📌 About the Project
+PrepWise AI is a Django-based interview preparation platform designed to help students and job seekers practice interviews in a structured and measurable environment.
 
-PrepWise AI is a web-based interview preparation platform being developed as a major project.
+The platform allows users to create an account, manage their professional profile, configure interview sessions, answer interview questions, and track their interview performance.
 
-The platform is designed to provide users with a structured environment where they can create an account, manage their profile, prepare for interviews, answer interview questions, receive performance feedback, and identify areas that need improvement.
+The project is being developed in phases, with future modules focused on AI-based answer evaluation, personalized feedback, performance analytics, recommendations, and timed technical coding interviews.
 
-The project focuses on combining a user-friendly web application with AI-assisted interview preparation and personalized recommendations.
+---
 
-### Current Development Status
+## 📌 Project Overview
 
-The project is currently in the **M1 - Backend Foundation and User Profile Management** phase.
+Preparing for interviews using scattered resources can make it difficult to evaluate actual interview readiness. Students may know the concepts but still struggle with answering questions under pressure, identifying weak areas, and receiving meaningful feedback.
 
-The current implementation includes:
+PrepWise AI aims to provide a single platform where users can:
 
-- Django backend setup
-- PostgreSQL database integration
-- User registration
-- Automatic login after registration
-- User profile creation and management
-- Interview and question data models
-- Django administration panel
-- Basic application routing
-
-Additional interview, evaluation, recommendation, and AI features will be implemented in subsequent development phases.
+- Create and manage their account
+- Maintain their interview preparation profile
+- Select interview type and difficulty
+- Practice role-specific interview questions
+- Submit and store interview responses
+- Complete structured interview sessions
+- View interview results
+- Receive AI-based evaluation and feedback *(upcoming)*
+- Track performance over multiple interviews *(upcoming)*
+- Receive personalized preparation recommendations *(upcoming)*
+- Practice timed technical coding questions *(upcoming)*
 
 ---
 
@@ -33,132 +34,229 @@ Additional interview, evaluation, recommendation, and AI features will be implem
 
 The main objectives of PrepWise AI are:
 
-- Provide users with a centralized interview preparation platform.
-- Allow users to create and manage their personal profiles.
-- Store user skills, education, experience level, and target role.
-- Provide different types of interview preparation.
-- Organize interview questions according to category, skill, and difficulty.
-- Record user interview responses and performance.
+- Provide a structured interview practice environment.
+- Support different interview categories such as Technical, HR, Behavioral, and Mixed interviews.
+- Allow users to specify their target job role and difficulty level.
+- Maintain user profiles containing education, skills, experience level, and target role.
+- Store interview questions and user responses in a structured database.
+- Evaluate answers using AI-based techniques.
 - Provide meaningful feedback on interview performance.
-- Identify areas where users need additional preparation.
-- Generate personalized recommendations based on user performance.
-- Provide a simple and accessible interface for students and job seekers.
+- Identify areas where users need improvement.
+- Generate personalized preparation recommendations.
+- Provide a timed coding environment for technical interviews.
 
 ---
 
-## ✨ Planned Features
+## 🚀 Current Features
 
-### 👤 User Authentication
+### Authentication
 
-Users will be able to:
+- User registration
+- User login
+- User logout
+- Protected pages using Django authentication
+- Automatic redirection after authentication
+- Session-based authentication
 
-- Register for an account
-- Log in securely
-- Log out
-- Access their personal account
-- Manage their profile
+### User Dashboard
 
-### 📝 Profile Management
+The dashboard provides access to:
 
-Users will be able to maintain information such as:
+- User profile
+- Interview preparation
+- Performance section
+- Recommendations section
+- Logout
 
-- Full name
+### Profile Management
+
+Users can maintain:
+
+- Full Name
 - Education
 - Skills
-- Experience level
-- Target job role
-- Personal introduction/bio
+- Experience Level
+- Target Role
+- Bio
 
-### 🎤 Interview Preparation
+### Interview Configuration
 
-The platform is planned to support different interview categories:
+Users can create an interview session by selecting:
 
-- Technical interviews
-- HR interviews
-- Behavioral interviews
-- Mixed interviews
-
-Users will also be able to select an appropriate difficulty level.
-
-### ❓ Question Management
-
-Interview questions will be organized using information such as:
-
-- Category
-- Skill
+- Interview Type
+  - Technical
+  - HR
+  - Behavioral
+  - Mixed
+- Target Role
 - Difficulty
-- Expected answer
+  - Easy
+  - Medium
+  - Hard
 
-This structure will allow questions to be used efficiently during interview sessions.
+### Interview Session
 
-### 📊 Performance Evaluation
+The current interview workflow supports:
 
-The planned evaluation system will analyze user responses and provide:
+- Question retrieval based on category and difficulty
+- Question-by-question navigation
+- Answer submission
+- Response storage
+- Question progress tracking
+- Interview completion
 
-- Scores
-- Feedback
-- Performance information
-- Areas requiring improvement
+### Interview Completion
 
-### 🤖 AI-Assisted Preparation
+After completing an interview, the system currently displays:
 
-Future development will introduce AI-based functionality to help with:
+- Target Role
+- Interview Type
+- Difficulty
+- Interview Score
+- Completion status
 
-- Interview question generation
-- Answer evaluation
-- Similarity-based analysis
-- Personalized feedback
-- Skill-gap identification
-- Preparation recommendations
-
-### 💡 Personalized Recommendations
-
-The platform is planned to recommend topics and preparation areas based on the user's interview performance.
+The completion page also contains a dedicated area for future AI-generated feedback.
 
 ---
 
-## 🏗️ Project Architecture
+## 🤖 Upcoming AI Features
 
-The current backend is structured using Django applications.
+The next major development stage will introduce the intelligent components of PrepWise AI.
+
+### AI Answer Evaluation
+
+The system will evaluate submitted answers based on factors such as:
+
+- Relevance
+- Semantic similarity
+- Answer quality
+- Expected answer alignment
+
+Each response will eventually receive:
+
+- Score
+- Feedback
+- Similarity score
+- Improvement suggestions
+
+### Performance Analytics
+
+The platform will analyze previous interviews and provide:
+
+- Overall performance
+- Question-wise performance
+- Strength areas
+- Weak areas
+- Interview history
+- Progress over time
+
+### Personalized Recommendations
+
+Based on interview performance, the system will recommend:
+
+- Topics to revise
+- Skills to improve
+- Question categories to practice
+- Suggested interview difficulty
+- Personalized preparation activities
+
+### Timed Technical Coding
+
+A dedicated technical interview mode is planned with:
+
+- Programming questions
+- Countdown timer
+- Code editor
+- Test cases
+- Code submission
+- Result evaluation
+
+---
+
+## 🛠️ Technology Stack
+
+### Backend
+
+- Python
+- Django 5.2.17
+
+### Database
+
+- PostgreSQL
+
+### Frontend
+
+- HTML5
+- CSS3
+- JavaScript
+
+### Development Tools
+
+- Visual Studio Code
+- Git
+- GitHub
+
+### Planned AI / Evaluation Components
+
+- Semantic similarity
+- AI-based answer evaluation
+- Automated feedback generation
+
+---
+
+## 🏗️ Project Structure
 
 ```text
 PrepWise-AI/
 │
-├── .gitignore
-├── README.md
+├── backend/
+│   │
+│   ├── accounts/
+│   │   ├── templates/
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── models.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   │
+│   ├── profiles/
+│   │   ├── templates/
+│   │   ├── models.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   │
+│   ├── interviews/
+│   │   ├── templates/
+│   │   ├── migrations/
+│   │   ├── models.py
+│   │   └── views.py
+│   │
+│   ├── questions/
+│   │   ├── migrations/
+│   │   ├── models.py
+│   │   └── views.py
+│   │
+│   ├── evaluation/
+│   │   ├── models.py
+│   │   └── views.py
+│   │
+│   ├── recommendations/
+│   │   ├── models.py
+│   │   └── views.py
+│   │
+│   ├── config/
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   ├── asgi.py
+│   │   └── wsgi.py
+│   │
+│   ├── manage.py
+│   └── requirements.txt
 │
-└── backend/
-    │
-    ├── manage.py
-    ├── requirements.txt
-    │
-    ├── config/
-    │   ├── settings.py
-    │   ├── urls.py
-    │   ├── asgi.py
-    │   └── wsgi.py
-    │
-    ├── accounts/
-    │   ├── views.py
-    │   ├── urls.py
-    │   └── templates/
-    │
-    ├── profiles/
-    │   ├── models.py
-    │   ├── views.py
-    │   ├── urls.py
-    │   └── templates/
-    │
-    ├── questions/
-    │   ├── models.py
-    │   └── admin.py
-    │
-    ├── interviews/
-    │   ├── models.py
-    │   └── admin.py
-    │
-    ├── evaluation/
-    │
-    └── recommendations/
-        ├── models.py
-        └── admin.py
+├── docs/
+│   ├── PrepWise_AI_Synopsis.pdf
+│   ├── PrepWise_AI_SRS.pdf
+│   └── PrepWise_AI_Project_Documentation.pdf
+│
+├── .gitignore
+└── README.md
