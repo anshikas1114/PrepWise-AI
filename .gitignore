@@ -24,3 +24,12 @@ db.sqlite3
 # OS
 .DS_Store
 Thumbs.db
+
+# Private resume uploads
+private_media/
+
+# Django uploaded media
+media/
+
+# Environment secrets
+.env

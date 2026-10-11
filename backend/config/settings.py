@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'interviews',
     'evaluation',
     'recommendations',
+    'resume_analyzer',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +142,5 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 } 
+
+MEDIA_ROOT = BASE_DIR / "private_media"
